@@ -12,6 +12,8 @@ import { PostList } from './components/PostList';
 
 const App: React.FC = () => {
   const [posts, setPosts] = useState<PostSchema[]>([]);
+  const [title, setTitle] = useState<string>('');
+  const [postMsg, setPostMsg] = useState<string>('');
 
   const getPosts = () => {
     axios
@@ -73,7 +75,12 @@ const App: React.FC = () => {
           </Route>
 
           <Route path="/share">
-            <Input />
+            <Input
+              title={title}
+              setTitle={setTitle}
+              postMsg={postMsg}
+              setPostMsg={setPostMsg}
+            />
           </Route>
         </Switch>
 
@@ -98,8 +105,8 @@ const App: React.FC = () => {
             }
 
             ::selection {
-              background: ${colors.bg1};
-              color: ${colors.fg};
+              background: ${colors.fg1};
+              color: ${colors.bg1};
             }
 
             ::-webkit-scrollbar {
