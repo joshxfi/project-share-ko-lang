@@ -1,7 +1,10 @@
 /** @jsx jsx */
-import React from 'react';
+/** @jsxFrag */
+import React, { useState } from 'react';
 import { css, jsx } from '@emotion/react';
 import { colors } from '../Styles';
+import { Link } from 'react-router-dom';
+import { IoIosCloseCircleOutline } from 'react-icons/io';
 
 interface InputProps {}
 
@@ -20,15 +23,19 @@ export const Input: React.FC<InputProps> = ({}) => {
           outline: none;
           border: none;
           padding: 1em;
-          background: #f9f9f9;
-          border-bottom: 3px solid ${colors.fg1};
+          background: ${colors.bg1};
           color: ${colors.fg};
           font-size: 1em;
           border-radius: 8px;
         }
 
         input {
-          margin: 30px 0 10px 0;
+          margin-bottom: 10px;
+          font-weight: 700;
+
+          ::placeholder {
+            font-weight: 400;
+          }
         }
 
         textarea {
@@ -41,14 +48,13 @@ export const Input: React.FC<InputProps> = ({}) => {
           outline: none;
           border: none;
           font-size: 1em;
-          background: ${colors.fg1};
-          color: #f9f9f9;
+          background: ${colors.bg1};
+          color: #fff;
           padding: 0.5em;
           width: 150px;
           margin: 0 auto;
           border-radius: 16px;
           cursor: pointer;
-          border-bottom: 3px solid ${colors.fg};
           transition: 0.3s ease;
 
           &:hover {
@@ -56,11 +62,28 @@ export const Input: React.FC<InputProps> = ({}) => {
           }
         }
 
-        div {
-          background: #fff;
+        a {
+          font-size: 2em;
+          position: relative;
+          margin-bottom: 1.5em;
+
+          svg {
+            fill: ${colors.fg};
+            position: absolute;
+            right: 0;
+            cursor: pointer;
+            transition: 0.3s ease;
+
+            &:hover {
+              transform: translateY(-3px);
+            }
+          }
         }
       `}
     >
+      <Link to="/">
+        <IoIosCloseCircleOutline />
+      </Link>
       <input type="text" placeholder="title" />
       <textarea placeholder="share a thought!"></textarea>
       <button type="button">share post</button>
