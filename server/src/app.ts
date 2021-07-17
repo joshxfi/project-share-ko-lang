@@ -15,7 +15,7 @@ app.get('/', (req: Request, res: Response) => {
 app.use('/api/posts', routes);
 
 const url =
-  'mongodb+srv://joshxfi:Test08qq@xfidb.jdq15.mongodb.net/PSKL2?retryWrites=true&w=majority';
+  '';
 
 mongoose.connect(process.env.MONGODB_URI || url, {
   useNewUrlParser: true,
