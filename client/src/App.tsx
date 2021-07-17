@@ -29,8 +29,15 @@ const App: React.FC = () => {
       .catch((err) => console.log(err));
   };
 
-  const updateLikes = () => {
-    axios.patch('http://localhost:8080/api/:id');
+  const updateLikes = (id: string) => {
+    const postToUpdate = posts.find((post) => post._id === id);
+
+    axios
+      .patch(`http://localhost:8080/api/posts/${id}`, {
+        likes: postToUpdate === undefined ? 0 : postToUpdate?.likes + 1,
+      })
+      .then(() => console.log(id))
+      .catch((err) => console.log(id, err));
   };
 
   const submitPost = (e: React.FormEvent<HTMLFormElement>) => {
@@ -43,9 +50,11 @@ const App: React.FC = () => {
         userPost: postMsg,
       })
       .then(() => {
-        setTitle('');
-        setPostMsg('');
-        setTimeout(() => setSubmitting(false), 1500);
+        setTimeout(() => {
+          setSubmitting(false);
+          setTitle('');
+          setPostMsg('');
+        }, 1500);
       })
       .catch((err) => console.log('Error: ', err));
   };
@@ -102,7 +111,11 @@ const App: React.FC = () => {
                 height: 120%;
               `}
             >
-              <PostList posts={posts} setLikes={setLikes} />
+              <PostList
+                posts={posts}
+                setLikes={setLikes}
+                updateLikes={updateLikes}
+              />
             </div>
           </Route>
 

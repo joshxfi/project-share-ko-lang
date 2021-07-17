@@ -7,9 +7,10 @@ import { colors } from '../Styles';
 interface PostProps {
   post: PostSchema;
   setLikes: React.Dispatch<React.SetStateAction<number>>;
+  updateLikes: (id: string) => void;
 }
 
-export const Post: React.FC<PostProps> = ({ post }) => {
+export const Post: React.FC<PostProps> = ({ post, updateLikes }) => {
   return (
     <div
       css={css`
@@ -65,7 +66,14 @@ export const Post: React.FC<PostProps> = ({ post }) => {
         `}
       >
         <p>{post.likes}</p>
-        <p>👍</p>
+        <p
+          onClick={() => updateLikes(post._id)}
+          css={css`
+            cursor: pointer;
+          `}
+        >
+          👍
+        </p>
       </div>
     </div>
   );
