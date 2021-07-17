@@ -1,17 +1,21 @@
 {
-  "name": "p-skl2",
-  "version": "1.0.0",
-  "description": "A platform to freely share your thoughts while staying anonymous! 🕵️‍♂️\r <br>Created for learning purposes! 📚",
+  "name": "project-skl",
+  "version": "2.0",
+  "description": "A platform to freely share your thoughts while staying anonymous! 🕵️ Created for learning purposes! 📚",
   "main": "index.js",
   "scripts": {
-    "build": "cd client && yarn build"
+    "dev": "cd client && yarn dev"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/joshxfi/p-skl-2.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "project-skl",
+    "pskl",
+    "p-skl"
+  ],
+  "author": "Josh Daniel Bañares",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/joshxfi/p-skl-2/issues"

@@ -3,6 +3,7 @@ import React from 'react';
 import { css, jsx } from '@emotion/react';
 import { PostSchema } from '../index';
 import { colors } from '../Styles';
+import { ImArrowUp } from 'react-icons/im';
 
 interface PostProps {
   post: PostSchema;
@@ -16,18 +17,14 @@ export const Post: React.FC<PostProps> = ({ post, updateLikes }) => {
         display: grid;
         background: ${colors.bg1};
         padding: 2em;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
         text-align: left;
         border-left: 3px solid ${colors.fg1};
         border-radius: 8px;
+        position: relative;
 
         h3,
-        p:first-of-type {
-          grid-column: 1/3;
-        }
-
-        h3,
-        p:last-of-type {
+        div > p {
           color: ${colors.fg1};
         }
 
@@ -40,39 +37,56 @@ export const Post: React.FC<PostProps> = ({ post, updateLikes }) => {
       <h3>{post.username}</h3>
       <p className="post">{post.userPost}</p>
 
-      <p
-        css={css`
-          font-size: 0.8em;
-        `}
-      >
-        {post.date}
-      </p>
       <div
         css={css`
           display: flex;
-          justify-content: flex-end;
-          font-size: 0.8em;
-
-          p:last-of-type {
-            position: relative;
-            bottom: 2px;
-            left: 5px;
-          }
-
-          p:first-of-type {
-            color: ${colors.fg1};
-          }
+          justify-content: space-between;
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          padding: 0 33px;
+          padding-bottom: 10px;
         `}
       >
-        <p>{post.likes}</p>
         <p
-          onClick={() => updateLikes(post._id)}
           css={css`
-            cursor: pointer;
+            font-size: 0.8em;
           `}
         >
-          👍
+          {post.date}
         </p>
+        <div
+          css={css`
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            font-size: 1em;
+
+            svg {
+              margin-left: 5px;
+              transition: 0.3s;
+              font-size: 0.8em;
+
+              &:hover {
+                color: ${colors.fg1};
+                transform: translateY(-3px);
+              }
+            }
+
+            p:first-of-type {
+              color: ${colors.fg1};
+            }
+          `}
+        >
+          <p>{post.likes}</p>
+
+          <ImArrowUp
+            onClick={() => updateLikes(post._id)}
+            css={css`
+              cursor: pointer;
+            `}
+          />
+        </div>
       </div>
     </div>
   );

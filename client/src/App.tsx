@@ -9,6 +9,7 @@ import { FaShare } from 'react-icons/fa';
 import { Navbar } from './components/Navbar';
 import { Input } from './components/Input';
 import { PostList } from './components/PostList';
+import { Spinner } from './components/Spinner';
 
 const App: React.FC = () => {
   const [posts, setPosts] = useState<PostSchema[]>([]);
@@ -16,11 +17,16 @@ const App: React.FC = () => {
   const [postMsg, setPostMsg] = useState<string>('');
   const [onShare, setOnShare] = useState<boolean>(false);
   const [submitting, setSubmitting] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [showMenu, setShowMenu] = useState<boolean>(false);
 
   const getPosts = () => {
     axios
       .get('https://pskl-api.herokuapp.com/api/posts')
-      .then((res) => setPosts(res.data))
+      .then((res) => {
+        setPosts(res.data);
+        setLoading(false);
+      })
       .catch((err) => console.log(err));
   };
 
@@ -71,7 +77,7 @@ const App: React.FC = () => {
           text-align: center;
         `}
       >
-        <Navbar />
+        <Navbar showMenu={showMenu} setShowMenu={setShowMenu} />
         <div
           css={css`
             margin-top: 3rem;
@@ -88,42 +94,57 @@ const App: React.FC = () => {
             }
           `}
         >
-          <h1>
-            Share Anything <FaShare />
-          </h1>
-          {!onShare ? (
-            <Link to="/share" onClick={() => setOnShare(true)}>
-              want to share someting?
-            </Link>
-          ) : (
-            <Link to="/" onClick={() => setOnShare(false)}>
-              go back to posts?
-            </Link>
-          )}
+          <div style={{ filter: showMenu ? 'blur(4px)' : 'none' }}>
+            <h1>
+              Share Anything <FaShare />
+            </h1>
+            {!onShare ? (
+              <Link to="/share" onClick={() => setOnShare(true)}>
+                want to share someting?
+              </Link>
+            ) : (
+              <Link to="/" onClick={() => setOnShare(false)}>
+                go back to posts?
+              </Link>
+            )}
+            {loading && (
+              <div
+                css={css`
+                  margin-top: 5em;
+                `}
+              >
+                <Spinner />
+              </div>
+            )}
+          </div>
+
+          <Switch>
+            <Route exact path="/">
+              <div
+                css={css`
+                  height: auto;
+                  padding-bottom: 10vh;
+                  filter: ${showMenu ? 'blur(4px)' : 'none'};
+                `}
+              >
+                <PostList posts={posts} updateLikes={updateLikes} />
+              </div>
+            </Route>
+
+            <Route path="/share">
+              <div style={{ filter: showMenu ? 'blur(4px)' : 'none' }}>
+                <Input
+                  submitPost={submitPost}
+                  title={title}
+                  setTitle={setTitle}
+                  postMsg={postMsg}
+                  setPostMsg={setPostMsg}
+                  submitting={submitting}
+                />
+              </div>
+            </Route>
+          </Switch>
         </div>
-
-        <Switch>
-          <Route exact path="/">
-            <div
-              css={css`
-                height: 120%;
-              `}
-            >
-              <PostList posts={posts} updateLikes={updateLikes} />
-            </div>
-          </Route>
-
-          <Route path="/share">
-            <Input
-              submitPost={submitPost}
-              title={title}
-              setTitle={setTitle}
-              postMsg={postMsg}
-              setPostMsg={setPostMsg}
-              submitting={submitting}
-            />
-          </Route>
-        </Switch>
 
         <Global
           styles={css`
@@ -138,6 +159,11 @@ const App: React.FC = () => {
 
             a {
               text-decoration: none;
+              -webkit-tap-highlight-color: transparent;
+            }
+
+            ul {
+              list-style: none;
             }
 
             body {

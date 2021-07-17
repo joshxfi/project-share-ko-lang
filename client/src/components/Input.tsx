@@ -94,6 +94,10 @@ export const Input: React.FC<InputProps> = (props) => {
             }
           }
         }
+
+        @media screen and (max-width: 768px) {
+          width: 90%;
+        }
       `}
     >
       <input

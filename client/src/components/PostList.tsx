@@ -17,6 +17,11 @@ export const PostList: React.FC<PostListProps> = ({ posts, updateLikes }) => {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 1.5em;
+        height: auto;
+
+        @media screen and (max-width: 768px) {
+          grid-template-columns: 1fr;
+        }
       `}
     >
       {posts
