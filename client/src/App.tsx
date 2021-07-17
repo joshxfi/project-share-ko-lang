@@ -19,7 +19,7 @@ const App: React.FC = () => {
 
   const getPosts = () => {
     axios
-      .get('http://localhost:8080/api/posts')
+      .get('https://pskl-api.herokuapp.com/api/posts')
       .then((res) => setPosts(res.data))
       .catch((err) => console.log(err));
   };
@@ -28,7 +28,7 @@ const App: React.FC = () => {
     const postToUpdate = posts.find((post) => post._id === id);
 
     axios
-      .patch(`http://localhost:8080/api/posts/${id}`, {
+      .patch(`https://pskl-api.herokuapp.com/api/posts/${id}`, {
         likes: postToUpdate === undefined ? 0 : postToUpdate?.likes + 1,
       })
       .then(() => getPosts())
@@ -40,7 +40,7 @@ const App: React.FC = () => {
     setSubmitting(true);
 
     axios
-      .post('http://localhost:8080/api/posts', {
+      .post('https://pskl-api.herokuapp.com/api/posts', {
         username: title,
         userPost: postMsg,
       })
