@@ -1,0 +1,20 @@
+{
+  "name": "p-skl2",
+  "version": "1.0.0",
+  "description": "A platform to freely share your thoughts while staying anonymous! 🕵️‍♂️\r <br>Created for learning purposes! 📚",
+  "main": "index.js",
+  "scripts": {
+    "build": "cd client && yarn build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joshxfi/p-skl-2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/joshxfi/p-skl-2/issues"
+  },
+  "homepage": "https://github.com/joshxfi/p-skl-2#readme"
+}
