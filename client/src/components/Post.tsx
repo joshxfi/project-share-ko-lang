@@ -6,7 +6,6 @@ import { colors } from '../Styles';
 
 interface PostProps {
   post: PostSchema;
-  setLikes: React.Dispatch<React.SetStateAction<number>>;
   updateLikes: (id: string) => void;
 }
 

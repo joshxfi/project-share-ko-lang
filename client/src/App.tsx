@@ -13,7 +13,6 @@ import { PostList } from './components/PostList';
 const App: React.FC = () => {
   const [posts, setPosts] = useState<PostSchema[]>([]);
   const [title, setTitle] = useState<string>('');
-  const [likes, setLikes] = useState<number>(0);
   const [postMsg, setPostMsg] = useState<string>('');
   const [onShare, setOnShare] = useState<boolean>(false);
   const [submitting, setSubmitting] = useState<boolean>(false);
@@ -111,11 +110,7 @@ const App: React.FC = () => {
                 height: 120%;
               `}
             >
-              <PostList
-                posts={posts}
-                setLikes={setLikes}
-                updateLikes={updateLikes}
-              />
+              <PostList posts={posts} updateLikes={updateLikes} />
             </div>
           </Route>
 
