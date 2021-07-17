@@ -20,11 +20,7 @@ const App: React.FC = () => {
   const getPosts = () => {
     axios
       .get('http://localhost:8080/api/posts')
-      .then((res) => {
-        const data = res.data;
-        setPosts(data);
-        console.log('status 200 for GET request');
-      })
+      .then((res) => setPosts(res.data))
       .catch((err) => console.log(err));
   };
 
@@ -35,8 +31,8 @@ const App: React.FC = () => {
       .patch(`http://localhost:8080/api/posts/${id}`, {
         likes: postToUpdate === undefined ? 0 : postToUpdate?.likes + 1,
       })
-      .then(() => console.log(id))
-      .catch((err) => console.log(id, err));
+      .then(() => getPosts())
+      .catch((err) => console.log(err));
   };
 
   const submitPost = (e: React.FormEvent<HTMLFormElement>) => {
@@ -53,12 +49,15 @@ const App: React.FC = () => {
           setSubmitting(false);
           setTitle('');
           setPostMsg('');
+          getPosts();
         }, 1500);
       })
       .catch((err) => console.log('Error: ', err));
   };
 
-  useEffect(() => getPosts(), []);
+  useEffect(() => {
+    getPosts();
+  }, []);
 
   return (
     <Router>
