@@ -6,9 +6,10 @@ import { Post } from '../components/Post';
 
 interface PostListProps {
   posts: PostSchema[];
+  setLikes: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export const PostList: React.FC<PostListProps> = ({ posts }) => {
+export const PostList: React.FC<PostListProps> = ({ posts, setLikes }) => {
   return (
     <main
       css={css`
@@ -22,7 +23,7 @@ export const PostList: React.FC<PostListProps> = ({ posts }) => {
         .slice(0)
         .reverse()
         .map((post, id) => (
-          <Post post={post} key={id} />
+          <Post post={post} key={id} setLikes={setLikes} />
         ))}
     </main>
   );

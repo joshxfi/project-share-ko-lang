@@ -6,6 +6,7 @@ import { colors } from '../Styles';
 
 interface PostProps {
   post: PostSchema;
+  setLikes: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export const Post: React.FC<PostProps> = ({ post }) => {

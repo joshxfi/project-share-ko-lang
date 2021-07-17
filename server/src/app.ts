@@ -1,10 +1,12 @@
 import express, { Application, Request, Response } from 'express';
 import mongoose from 'mongoose';
 import routes from './routes/api';
+import cors from 'cors';
 
 const app: Application = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cors());
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello World!');
@@ -12,7 +14,8 @@ app.get('/', (req: Request, res: Response) => {
 
 app.use('/api/posts', routes);
 
-const url = '';
+const url =
+  'mongodb+srv://joshxfi:Test08qq@xfidb.jdq15.mongodb.net/PSKL2?retryWrites=true&w=majority';
 
 mongoose.connect(process.env.MONGODB_URI || url, {
   useNewUrlParser: true,

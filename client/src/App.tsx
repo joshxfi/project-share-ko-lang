@@ -13,7 +13,10 @@ import { PostList } from './components/PostList';
 const App: React.FC = () => {
   const [posts, setPosts] = useState<PostSchema[]>([]);
   const [title, setTitle] = useState<string>('');
+  const [likes, setLikes] = useState<number>(0);
   const [postMsg, setPostMsg] = useState<string>('');
+  const [onShare, setOnShare] = useState<boolean>(false);
+  const [submitting, setSubmitting] = useState<boolean>(false);
 
   const getPosts = () => {
     axios
@@ -24,6 +27,27 @@ const App: React.FC = () => {
         console.log('status 200 for GET request');
       })
       .catch((err) => console.log(err));
+  };
+
+  const updateLikes = () => {
+    axios.patch('http://localhost:8080/api/:id');
+  };
+
+  const submitPost = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSubmitting(true);
+
+    axios
+      .post('http://localhost:8080/api/posts', {
+        username: title,
+        userPost: postMsg,
+      })
+      .then(() => {
+        setTitle('');
+        setPostMsg('');
+        setTimeout(() => setSubmitting(false), 1500);
+      })
+      .catch((err) => console.log('Error: ', err));
   };
 
   useEffect(() => getPosts(), []);
@@ -41,45 +65,55 @@ const App: React.FC = () => {
         `}
       >
         <Navbar />
+        <div
+          css={css`
+            margin-top: 3rem;
+
+            a {
+              color: ${colors.fg1};
+              font-weight: 300;
+              margin-top: 0.5em;
+              cursor: pointer;
+            }
+
+            svg {
+              color: ${colors.fg1};
+            }
+          `}
+        >
+          <h1>
+            Share Anything <FaShare />
+          </h1>
+          {!onShare ? (
+            <Link to="/share" onClick={() => setOnShare(true)}>
+              want to share someting?
+            </Link>
+          ) : (
+            <Link to="/" onClick={() => setOnShare(false)}>
+              go back to posts?
+            </Link>
+          )}
+        </div>
 
         <Switch>
           <Route exact path="/">
             <div
               css={css`
-                margin-top: 3rem;
-
-                a {
-                  color: ${colors.fg1};
-                  font-weight: 300;
-                  margin-top: 0.5em;
-                  cursor: pointer;
-                }
-
-                svg {
-                  color: ${colors.fg1};
-                }
+                height: 120%;
               `}
             >
-              <h1>
-                Share Anything <FaShare />
-              </h1>
-              <Link to="/share">want to share someting?</Link>
-            </div>
-            <div
-              css={css`
-                height: calc(100% + 10vh);
-              `}
-            >
-              <PostList posts={posts} />
+              <PostList posts={posts} setLikes={setLikes} />
             </div>
           </Route>
 
           <Route path="/share">
             <Input
+              submitPost={submitPost}
               title={title}
               setTitle={setTitle}
               postMsg={postMsg}
               setPostMsg={setPostMsg}
+              submitting={submitting}
             />
           </Route>
         </Switch>
@@ -102,6 +136,8 @@ const App: React.FC = () => {
             body {
               color: ${colors.fg};
               background-color: ${colors.bg};
+              min-height: 100vh;
+              max-height: auto;
             }
 
             ::selection {
