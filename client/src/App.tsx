@@ -9,6 +9,7 @@ import { FaShare } from 'react-icons/fa';
 import { Navbar } from './components/Navbar';
 import { Input } from './components/Input';
 import { PostList } from './components/PostList';
+import { Menu } from './components/Menu';
 import { Spinner } from './components/Spinner';
 
 const App: React.FC = () => {
@@ -77,10 +78,16 @@ const App: React.FC = () => {
           text-align: center;
         `}
       >
-        <Navbar showMenu={showMenu} setShowMenu={setShowMenu} />
+        <Navbar
+          showMenu={showMenu}
+          setShowMenu={setShowMenu}
+          setOnShare={setOnShare}
+        />
+        <Menu setShowMenu={setShowMenu} showMenu={showMenu} />
         <div
+          onClick={() => setShowMenu(false)}
           css={css`
-            margin-top: 3rem;
+            margin-top: 10rem;
 
             a {
               color: ${colors.fg1};
@@ -89,15 +96,21 @@ const App: React.FC = () => {
               cursor: pointer;
             }
 
+            a > h1 {
+              color: ${colors.fg};
+            }
+
             svg {
               color: ${colors.fg1};
             }
           `}
         >
           <div style={{ filter: showMenu ? 'blur(4px)' : 'none' }}>
-            <h1>
-              Share Anything <FaShare />
-            </h1>
+            <Link to="/share">
+              <h1 onClick={() => setOnShare(true)}>
+                Share Anything <FaShare />
+              </h1>
+            </Link>
             {!onShare ? (
               <Link to="/share" onClick={() => setOnShare(true)}>
                 want to share someting?
@@ -171,6 +184,7 @@ const App: React.FC = () => {
               background-color: ${colors.bg};
               min-height: 100vh;
               max-height: auto;
+              overflow-x: hidden;
             }
 
             ::selection {

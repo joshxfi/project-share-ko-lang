@@ -1,32 +1,65 @@
 /** @jsx jsx */
 import React, { useState } from 'react';
 import { css, jsx } from '@emotion/react';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { RiSpyFill } from 'react-icons/ri';
 import { colors } from '../Styles';
 import { FaBars } from 'react-icons/fa';
-import { Menu } from './Menu';
 
 interface NavProps {
   showMenu: boolean;
   setShowMenu: React.Dispatch<React.SetStateAction<boolean>>;
+  setOnShare: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const Navbar: React.FC<NavProps> = ({ showMenu, setShowMenu }) => {
+export const Navbar: React.FC<NavProps> = ({
+  showMenu,
+  setShowMenu,
+  setOnShare,
+}) => {
+  const [showNav, setShowNav] = useState<boolean>(true);
+
+  let yBefore = window.pageYOffset;
+  window.onscroll = function () {
+    let yNow = window.pageYOffset;
+    if (yBefore > yNow) {
+      setShowNav(true);
+    } else {
+      setShowNav(false);
+    }
+    yBefore = yNow;
+  };
+
+  const variants = {
+    visible: { opacity: 1, y: 0 },
+    hidden: { opacity: 0, y: -100 },
+  };
+
   return (
-    <nav
+    <motion.nav
+      variants={variants}
+      initial={{ y: -100 }}
+      animate={showNav ? 'visible' : 'hidden'}
+      transition={{ duration: 0.6 }}
       css={css`
         height: 4rem;
-        width: 100%;
+        width: 80%;
+        top: 0px;
+        padding: 30px 0;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        position: fixed;
+        z-index: 20;
+        background: ${colors.bg};
 
-        div:first-of-type {
+        a {
           font-weight: 500;
+          font-size: 1.2em;
+          color: ${colors.fg1};
           display: flex;
           align-items: center;
-          color: ${colors.fg1};
-          font-size: 1.2em;
 
           svg {
             color: ${colors.fg};
@@ -67,16 +100,15 @@ export const Navbar: React.FC<NavProps> = ({ showMenu, setShowMenu }) => {
         }
       `}
     >
-      <div>
+      <Link to="/" onClick={() => setOnShare(false)}>
         P-SKL <RiSpyFill />
-      </div>
+      </Link>
       <ul className="ul">
         <li>about</li>
         <li>portfolio</li>
         <li>github</li>
       </ul>
       <FaBars className="menu" onClick={() => setShowMenu(!showMenu)} />
-      <Menu setShowMenu={setShowMenu} showMenu={showMenu} />
-    </nav>
+    </motion.nav>
   );
 };
