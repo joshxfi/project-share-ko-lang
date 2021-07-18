@@ -54,7 +54,7 @@ export const Navbar: React.FC<NavProps> = ({
         z-index: 20;
         background: ${colors.bg};
 
-        a {
+        .logo {
           font-weight: 500;
           font-size: 1.2em;
           color: ${colors.fg1};
@@ -80,6 +80,14 @@ export const Navbar: React.FC<NavProps> = ({
 
           li {
             font-weight: 300;
+
+            & > a {
+              transition: 0.3s;
+
+              &:hover {
+                color: ${colors.fg1};
+              }
+            }
           }
         }
 
@@ -100,13 +108,23 @@ export const Navbar: React.FC<NavProps> = ({
         }
       `}
     >
-      <Link to="/" onClick={() => setOnShare(false)}>
+      <Link className="logo" to="/" onClick={() => setOnShare(false)}>
         P-SKL <RiSpyFill />
       </Link>
       <ul className="ul">
-        <li>about</li>
-        <li>portfolio</li>
-        <li>github</li>
+        <li>
+          <Link to="/about">about</Link>
+        </li>
+        <li>
+          <a href="https://joshxfi.pages.dev" rel="author" target="_blank">
+            portfolio
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/joshxfi" rel="author" target="_blank">
+            github
+          </a>
+        </li>
       </ul>
       <FaBars className="menu" onClick={() => setShowMenu(!showMenu)} />
     </motion.nav>

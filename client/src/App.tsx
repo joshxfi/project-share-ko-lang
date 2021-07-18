@@ -44,22 +44,25 @@ const App: React.FC = () => {
 
   const submitPost = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitting(true);
 
-    axios
-      .post('https://pskl-api.herokuapp.com/api/posts', {
-        username: title,
-        userPost: postMsg,
-      })
-      .then(() => {
-        setTimeout(() => {
-          setSubmitting(false);
-          setTitle('');
-          setPostMsg('');
-          getPosts();
-        }, 1500);
-      })
-      .catch((err) => console.log('Error: ', err));
+    if (postMsg.length >= 30) {
+      setSubmitting(true);
+
+      axios
+        .post('https://pskl-api.herokuapp.com/api/posts', {
+          username: title,
+          userPost: postMsg,
+        })
+        .then(() => {
+          setTimeout(() => {
+            setSubmitting(false);
+            setTitle('');
+            setPostMsg('');
+            getPosts();
+          }, 1500);
+        })
+        .catch((err) => console.log('Error: ', err));
+    } else return;
   };
 
   useEffect(() => {
@@ -166,6 +169,7 @@ const App: React.FC = () => {
             * {
               box-sizing: border-box;
               font-family: 'Noto Sans JP', sans-serif;
+              -webkit-tap-highlight-color: transparent;
               margin: 0;
               padding: 0;
             }
@@ -173,6 +177,7 @@ const App: React.FC = () => {
             a {
               text-decoration: none;
               -webkit-tap-highlight-color: transparent;
+              color: ${colors.fg};
             }
 
             ul {

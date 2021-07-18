@@ -2,6 +2,7 @@
 import React from 'react';
 import { css, jsx } from '@emotion/react';
 import { colors } from '../Styles';
+import { Link } from 'react-router-dom';
 import { BsArrowRight } from 'react-icons/bs';
 
 interface MenuProps {
@@ -46,9 +47,19 @@ export const Menu: React.FC<MenuProps> = ({ showMenu, setShowMenu }) => {
           }
         `}
       >
-        <li>about</li>
-        <li>portfolio</li>
-        <li>github</li>
+        <li>
+          <Link to="/about">about</Link>
+        </li>
+        <li>
+          <a href="https://joshxfi.pages.dev" rel="author" target="_blank">
+            portfolio
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/joshxfi" rel="author" target="_blank">
+            github
+          </a>
+        </li>
         <li>
           <BsArrowRight onClick={() => setShowMenu(!showMenu)} />
         </li>
