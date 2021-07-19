@@ -98,7 +98,7 @@ export const Input: React.FC<InputProps> = (props) => {
       <input
         maxLength={50}
         type="text"
-        placeholder="title / username"
+        placeholder="title / username (optional)"
         onChange={(e) => props.setTitle(e.target.value)}
         value={props.title}
       />

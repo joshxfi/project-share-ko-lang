@@ -11,6 +11,7 @@ import { Input } from './components/Input';
 import { PostList } from './components/PostList';
 import { Menu } from './components/Menu';
 import { Spinner } from './components/Spinner';
+import { About } from './components/About';
 
 const App: React.FC = () => {
   const [posts, setPosts] = useState<PostSchema[]>([]);
@@ -54,12 +55,10 @@ const App: React.FC = () => {
           userPost: postMsg,
         })
         .then(() => {
-          setTimeout(() => {
-            setSubmitting(false);
-            setTitle('');
-            setPostMsg('');
-            getPosts();
-          }, 1500);
+          setSubmitting(false);
+          setTitle('');
+          setPostMsg('');
+          getPosts();
         })
         .catch((err) => console.log('Error: ', err));
     } else return;
@@ -158,6 +157,10 @@ const App: React.FC = () => {
                   submitting={submitting}
                 />
               </div>
+            </Route>
+
+            <Route path="/about">
+              <About />
             </Route>
           </Switch>
         </div>
