@@ -7,7 +7,7 @@ let yyyy = today.getFullYear();
 
 today = mm + '/' + dd + '/' + yyyy;
 
-interface UserPost extends mongoose.Document {
+export interface UserPost extends mongoose.Document {
   username: string;
   userPost: string;
   likes: number;

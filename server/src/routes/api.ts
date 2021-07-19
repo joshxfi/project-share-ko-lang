@@ -9,7 +9,7 @@ router.get('/', (req: Request, res: Response) => {
 
 router.get('/:id', (req: Request, res: Response) => {
   Posts.findById(req.params.id)
-    .then((data: object) =>
+    .then((data) =>
       data
         ? res.status(200).json(data)
         : res
@@ -34,7 +34,7 @@ router.post('/', (req: Request, res: Response) => {
 
 router.patch('/:id', (req: Request, res: Response) => {
   Posts.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true })
-    .then((data: object) =>
+    .then((data) =>
       res.status(200).json({
         msg: 'Post updated successfully',
         postUpdated: data,

@@ -14,9 +14,7 @@ app.get('/', (req: Request, res: Response) => {
 
 app.use('/api/posts', routes);
 
-const url = '';
-
-mongoose.connect(process.env.MONGODB_URI || url, {
+mongoose.connect(process.env.MONGODB_URI ?? '', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
