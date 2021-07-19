@@ -15,7 +15,10 @@ interface InputProps {
 }
 
 export const Input: React.FC<InputProps> = (props) => {
-  const maxChar = props.postMsg.length;
+  const maxChar =
+    props.postMsg.length < 30
+      ? `-${30 - props.postMsg.length}`
+      : props.postMsg.length;
 
   return (
     <form
@@ -128,7 +131,17 @@ export const Input: React.FC<InputProps> = (props) => {
             font-weight: 400;
           `}
         >
-          {maxChar}/400
+          <span
+            style={{
+              color:
+                props.postMsg.length < 30 || props.postMsg.length === 400
+                  ? '#cc0000'
+                  : '',
+            }}
+          >
+            {maxChar}
+            /400
+          </span>
         </p>
       </div>
       {props.submitting ? (

@@ -50,7 +50,7 @@ const App: React.FC = () => {
 
       axios
         .post('https://pskl-api.herokuapp.com/api/posts', {
-          username: title,
+          username: title.length ? title : 'anonymous',
           userPost: postMsg,
         })
         .then(() => {

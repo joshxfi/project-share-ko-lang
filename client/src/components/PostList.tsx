@@ -2,6 +2,7 @@
 import React from 'react';
 import { css, jsx } from '@emotion/react';
 import { PostSchema } from '../index';
+import { motion } from 'framer-motion';
 import { Post } from '../components/Post';
 
 interface PostListProps {
@@ -11,7 +12,9 @@ interface PostListProps {
 
 export const PostList: React.FC<PostListProps> = ({ posts, updateLikes }) => {
   return (
-    <main
+    <motion.main
+      initial="hidden"
+      animate="visible"
       css={css`
         margin-top: 5rem;
         display: grid;
@@ -30,6 +33,6 @@ export const PostList: React.FC<PostListProps> = ({ posts, updateLikes }) => {
         .map((post, id) => (
           <Post post={post} key={id} updateLikes={updateLikes} />
         ))}
-    </main>
+    </motion.main>
   );
 };
