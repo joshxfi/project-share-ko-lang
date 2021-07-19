@@ -4,15 +4,7 @@ import React, { useState } from 'react';
 import { css, jsx } from '@emotion/react';
 import { colors } from '../Styles';
 import { Spinner } from './Spinner';
-
-interface InputProps {
-  title: string;
-  postMsg: string;
-  setTitle: React.Dispatch<React.SetStateAction<string>>;
-  setPostMsg: React.Dispatch<React.SetStateAction<string>>;
-  submitPost: (e: React.FormEvent<HTMLFormElement>) => void;
-  submitting: boolean;
-}
+import { InputProps } from '..';
 
 export const Input: React.FC<InputProps> = (props) => {
   const maxChar =

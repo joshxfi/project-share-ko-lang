@@ -7,13 +7,19 @@ let yyyy = today.getFullYear();
 
 today = mm + '/' + dd + '/' + yyyy;
 
-const Schema = mongoose.Schema;
-const postsSchema = new Schema({
-  username: {
+interface UserPost extends mongoose.Document {
+  username: string;
+  userPost: string;
+  likes: number;
+  data: Date | string;
+}
+
+const postsSchema = new mongoose.Schema({
+  username: String,
+  userPost: {
     type: String,
-    default: 'anonymous',
+    required: true,
   },
-  userPost: String,
   likes: {
     type: Number,
     default: 0,
@@ -24,4 +30,4 @@ const postsSchema = new Schema({
   },
 });
 
-export default mongoose.model('PSKL-posts', postsSchema);
+export default mongoose.model<UserPost>('PSKL-posts', postsSchema);

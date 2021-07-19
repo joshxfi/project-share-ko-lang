@@ -1,14 +1,9 @@
 /** @jsx jsx */
 import React from 'react';
 import { css, jsx } from '@emotion/react';
-import { PostSchema } from '../index';
 import { motion } from 'framer-motion';
 import { Post } from '../components/Post';
-
-interface PostListProps {
-  posts: PostSchema[];
-  updateLikes: (id: string) => void;
-}
+import { PostListProps } from '../index';
 
 export const PostList: React.FC<PostListProps> = ({ posts, updateLikes }) => {
   return (

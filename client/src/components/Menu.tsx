@@ -4,11 +4,7 @@ import { css, jsx } from '@emotion/react';
 import { colors } from '../Styles';
 import { Link } from 'react-router-dom';
 import { BsArrowRight } from 'react-icons/bs';
-
-interface MenuProps {
-  showMenu: boolean;
-  setShowMenu: React.Dispatch<React.SetStateAction<boolean>>;
-}
+import { MenuProps } from '..';
 
 export const Menu: React.FC<MenuProps> = ({ showMenu, setShowMenu }) => {
   return (

@@ -1,15 +1,10 @@
 /** @jsx jsx */
 import React from 'react';
 import { css, jsx } from '@emotion/react';
-import { PostSchema } from '../index';
 import { motion } from 'framer-motion';
 import { colors } from '../Styles';
 import { ImArrowUp } from 'react-icons/im';
-
-interface PostProps {
-  post: PostSchema;
-  updateLikes: (id: string) => void;
-}
+import { PostProps } from '../index';
 
 export const Post: React.FC<PostProps> = ({ post, updateLikes }) => {
   const container = {

@@ -3,7 +3,7 @@ import React from 'react';
 import { css, jsx } from '@emotion/react';
 import { colors } from '../Styles';
 
-export const Spinner: React.FC = ({}) => {
+export const Spinner: React.FC = () => {
   return (
     <div
       css={css`

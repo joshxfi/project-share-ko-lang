@@ -6,12 +6,7 @@ import { motion } from 'framer-motion';
 import { RiSpyFill } from 'react-icons/ri';
 import { colors } from '../Styles';
 import { FaBars } from 'react-icons/fa';
-
-interface NavProps {
-  showMenu: boolean;
-  setShowMenu: React.Dispatch<React.SetStateAction<boolean>>;
-  setOnShare: React.Dispatch<React.SetStateAction<boolean>>;
-}
+import { NavProps } from '..';
 
 export const Navbar: React.FC<NavProps> = ({
   showMenu,

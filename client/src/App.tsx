@@ -4,7 +4,7 @@ import { css, jsx, Global } from '@emotion/react';
 import { colors } from './Styles';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import axios from 'axios';
-import { PostSchema } from './index';
+import { PostSchema } from '.';
 import { FaShare } from 'react-icons/fa';
 import { Navbar } from './components/Navbar';
 import { Input } from './components/Input';
