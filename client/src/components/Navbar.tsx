@@ -111,12 +111,12 @@ export const Navbar: React.FC<NavProps> = ({
           <Link to="/about">about</Link>
         </li>
         <li>
-          <a href="https://joshxfi.pages.dev" rel="author" target="_blank">
+          <a href="https://joshxfi.pages.dev" rel="noreferrer" target="_blank">
             portfolio
           </a>
         </li>
         <li>
-          <a href="https://github.com/joshxfi" rel="author" target="_blank">
+          <a href="https://github.com/joshxfi" rel="noreferrer" target="_blank">
             github
           </a>
         </li>

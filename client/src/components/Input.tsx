@@ -1,6 +1,5 @@
 /** @jsx jsx */
-/** @jsxFrag */
-import React, { useState } from 'react';
+import React from 'react';
 import { css, jsx } from '@emotion/react';
 import { colors } from '../Styles';
 import { Spinner } from './Spinner';

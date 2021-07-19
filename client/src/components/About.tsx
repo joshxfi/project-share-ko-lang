@@ -5,7 +5,17 @@ import { colors } from '../Styles';
 
 export const About: React.FC = () => {
   return (
-    <section>
+    <section
+      css={css`
+        padding-bottom: 5em;
+
+        @media screen and (max-width: 768px) {
+          & > div:nth-of-type(2) {
+            width: 90%;
+          }
+        }
+      `}
+    >
       <div
         css={css`
           width: 100%;

@@ -160,7 +160,9 @@ const App: React.FC = () => {
             </Route>
 
             <Route path="/about">
-              <About />
+              <div style={{ filter: showMenu ? 'blur(4px)' : 'none' }}>
+                <About />
+              </div>
             </Route>
           </Switch>
         </div>
