@@ -13,6 +13,7 @@ export interface InputProps {
   setPostMsg: React.Dispatch<React.SetStateAction<string>>;
   submitPost: (e: React.FormEvent<HTMLFormElement>) => void;
   submitting: boolean;
+  sentMsg: boolean;
 }
 
 export interface MenuProps {

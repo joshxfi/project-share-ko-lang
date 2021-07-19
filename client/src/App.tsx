@@ -19,6 +19,7 @@ const App: React.FC = () => {
   const [postMsg, setPostMsg] = useState<string>('');
   const [onShare, setOnShare] = useState<boolean>(false);
   const [submitting, setSubmitting] = useState<boolean>(false);
+  const [sentMsg, setSentMsg] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
   const [showMenu, setShowMenu] = useState<boolean>(false);
 
@@ -43,6 +44,15 @@ const App: React.FC = () => {
       .catch((err) => console.log(err));
   };
 
+  const reset = () => {
+    setSentMsg(true);
+    setTitle('');
+    setPostMsg('');
+    getPosts();
+
+    setTimeout(() => setSentMsg(false), 3000);
+  };
+
   const submitPost = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -56,9 +66,7 @@ const App: React.FC = () => {
         })
         .then(() => {
           setSubmitting(false);
-          setTitle('');
-          setPostMsg('');
-          getPosts();
+          reset();
         })
         .catch((err) => console.log('Error: ', err));
     } else return;
@@ -155,6 +163,7 @@ const App: React.FC = () => {
                   postMsg={postMsg}
                   setPostMsg={setPostMsg}
                   submitting={submitting}
+                  sentMsg={sentMsg}
                 />
               </div>
             </Route>
@@ -169,7 +178,7 @@ const App: React.FC = () => {
 
         <Global
           styles={css`
-            @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap');
+            @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
 
             * {
               box-sizing: border-box;

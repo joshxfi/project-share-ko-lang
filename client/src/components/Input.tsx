@@ -4,6 +4,7 @@ import { css, jsx } from '@emotion/react';
 import { colors } from '../Styles';
 import { Spinner } from './Spinner';
 import { InputProps } from '..';
+import { motion } from 'framer-motion';
 
 export const Input: React.FC<InputProps> = (props) => {
   const maxChar =
@@ -110,15 +111,26 @@ export const Input: React.FC<InputProps> = (props) => {
       <div
         css={css`
           display: flex;
-          justify-content: flex-end;
+          justify-content: space-between;
           margin-bottom: 25px;
           margin-top: 10px;
           color: #e0e0e0;
         `}
       >
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: props.sentMsg ? 1 : 0 }}
+          transition={{ duration: 1 }}
+          css={css`
+            padding-left: 1rem;
+            color: ${colors.fg1};
+          `}
+        >
+          shared successfully!
+        </motion.p>
         <p
           css={css`
-            padding-right: 15px;
+            padding-right: 1rem;
             font-weight: 400;
           `}
         >
@@ -135,6 +147,7 @@ export const Input: React.FC<InputProps> = (props) => {
           </span>
         </p>
       </div>
+
       {props.submitting ? (
         <Spinner />
       ) : (
