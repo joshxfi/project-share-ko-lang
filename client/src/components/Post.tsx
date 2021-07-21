@@ -39,6 +39,7 @@ export const Post: React.FC<PostProps> = ({ post, updateLikes }) => {
         .post {
           margin: 0.5em 0;
           font-size: 0.9em;
+          word-break: break-word;
         }
       `}
     >
