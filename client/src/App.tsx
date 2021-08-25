@@ -91,13 +91,13 @@ const App: React.FC = () => {
                   <Input />
                 </div>
               </Route>
-            </PostsProvider>
 
-            <Route path='/about'>
-              <div style={{ filter: showMenu ? 'blur(4px)' : 'none' }}>
-                <About />
-              </div>
-            </Route>
+              <Route path='/about'>
+                <div style={{ filter: showMenu ? 'blur(4px)' : 'none' }}>
+                  <About />
+                </div>
+              </Route>
+            </PostsProvider>
           </Switch>
         </div>
       </div>
