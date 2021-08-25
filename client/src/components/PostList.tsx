@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import React from 'react';
+import mq from '../styles/breakpoint';
 import { css, jsx } from '@emotion/react';
 import { motion } from 'framer-motion';
 import { Post } from '../components/Post';
@@ -17,7 +18,7 @@ export const PostList: React.FC<PostListProps> = ({ posts, updateLikes }) => {
         gap: 1.5em;
         height: auto;
 
-        @media screen and (max-width: 768px) {
+        ${mq} {
           grid-template-columns: 1fr;
         }
       `}

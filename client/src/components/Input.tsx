@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import React from 'react';
 import { css, jsx } from '@emotion/react';
+import mq from '../styles/breakpoint';
 import { colors } from '../styles/colors';
 import { Spinner } from './Spinner';
 import { InputProps } from '..';
@@ -90,7 +91,7 @@ export const Input: React.FC<InputProps> = (props) => {
           }
         }
 
-        @media screen and (max-width: 768px) {
+        ${mq} {
           width: 90%;
         }
       `}

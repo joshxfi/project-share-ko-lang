@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import React from 'react';
 import { css, jsx } from '@emotion/react';
+import mq from '../styles/breakpoint';
 import { colors } from '../styles/colors';
 
 export const About: React.FC = () => {
@@ -9,7 +10,7 @@ export const About: React.FC = () => {
       css={css`
         padding-bottom: 5em;
 
-        @media screen and (max-width: 768px) {
+        ${mq} {
           & > div:nth-of-type(2) {
             width: 90%;
           }

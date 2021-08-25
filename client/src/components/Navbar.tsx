@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import React, { useState } from 'react';
 import { css, jsx } from '@emotion/react';
+import mq from '../styles/breakpoint';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { RiSpyFill } from 'react-icons/ri';
@@ -92,7 +93,7 @@ export const Navbar: React.FC<NavProps> = ({
           z-index: 10;
         }
 
-        @media screen and (max-width: 768px) {
+        ${mq} {
           .menu {
             display: block;
           }
