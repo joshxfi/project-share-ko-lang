@@ -6,6 +6,7 @@ export const useProps = () => {
   return useContext(PostsContext);
 };
 
+const URL = 'https://pskl-api.herokuapp.com/api/posts';
 
 export const PostsProvider = ({ children }: { children: React.ReactNode }) => {
   const [posts, setPosts] = useState<PostSchema[]>([]);
@@ -17,7 +18,7 @@ export const PostsProvider = ({ children }: { children: React.ReactNode }) => {
 
   const getPosts = async () => {
     try {
-      const res = await axios.get('https://pskl-api.herokuapp.com/api/posts');
+      const res = await axios.get(URL);
 
       setPosts(res.data);
       setLoading(false);
@@ -30,7 +31,7 @@ export const PostsProvider = ({ children }: { children: React.ReactNode }) => {
     const postToUpdate = posts.find((post) => post._id === id);
 
     try {
-      await axios.patch(`https://pskl-api.herokuapp.com/api/posts/${id}`, {
+      await axios.patch(`${URL}/${id}`, {
         likes: postToUpdate === undefined ? 0 : postToUpdate?.likes + 1,
       });
       getPosts();
@@ -45,7 +46,7 @@ export const PostsProvider = ({ children }: { children: React.ReactNode }) => {
     if (postMsg.length >= 30) {
       setSubmitting(true);
       try {
-        await axios.post('https://pskl-api.herokuapp.com/api/posts', {
+        await axios.post(URL, {
           username: title.length ? title : 'anonymous',
           userPost: postMsg,
         });
