@@ -1,9 +1,8 @@
 /** @jsx jsx */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { css, jsx } from '@emotion/react';
 import { colors } from './styles/colors';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import axios from 'axios';
 import { FaShare } from 'react-icons/fa';
 import { Navbar } from './components/Navbar';
 import { Input } from './components/Input';
@@ -12,72 +11,11 @@ import { Menu } from './components/Menu';
 import { Spinner } from './components/Spinner';
 import { About } from './components/About';
 import { GlobalStyle } from './styles/GlobalStyle';
+import { loading, PostsProvider } from './context/PostsContext';
 
 const App: React.FC = () => {
-  const [posts, setPosts] = useState<PostSchema[]>([]);
-  const [title, setTitle] = useState<string>('');
-  const [postMsg, setPostMsg] = useState<string>('');
-  const [onShare, setOnShare] = useState<boolean>(false);
-  const [submitting, setSubmitting] = useState<boolean>(false);
-  const [sentMsg, setSentMsg] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(true);
   const [showMenu, setShowMenu] = useState<boolean>(false);
-
-  const getPosts = async () => {
-    try {
-      const res = await axios.get('https://pskl-api.herokuapp.com/api/posts');
-
-      setPosts(res.data);
-      setLoading(false);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  const updateLikes = async (id: string) => {
-    const postToUpdate = posts.find((post) => post._id === id);
-
-    try {
-      await axios.patch(`https://pskl-api.herokuapp.com/api/posts/${id}`, {
-        likes: postToUpdate === undefined ? 0 : postToUpdate?.likes + 1,
-      });
-      getPosts();
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  const submitPost = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    if (postMsg.length >= 30) {
-      setSubmitting(true);
-      try {
-        await axios.post('https://pskl-api.herokuapp.com/api/posts', {
-          username: title.length ? title : 'anonymous',
-          userPost: postMsg,
-        });
-
-        setSubmitting(false);
-        reset();
-      } catch (err) {
-        console.error(err);
-      }
-    } else return;
-  };
-
-  const reset = () => {
-    setSentMsg(true);
-    setTitle('');
-    setPostMsg('');
-    getPosts();
-
-    setTimeout(() => setSentMsg(false), 3000);
-  };
-
-  useEffect(() => {
-    getPosts();
-  }, []);
+  const [onShare, setOnShare] = useState<boolean>(false);
 
   return (
     <Router>
@@ -145,31 +83,25 @@ const App: React.FC = () => {
           </div>
 
           <Switch>
-            <Route exact path='/'>
-              <div
-                css={css`
-                  height: auto;
-                  padding-bottom: 10vh;
-                  filter: ${showMenu ? 'blur(4px)' : 'none'};
-                `}
-              >
-                <PostList posts={posts} updateLikes={updateLikes} />
-              </div>
-            </Route>
+            <PostsProvider>
+              <Route exact path='/'>
+                <div
+                  css={css`
+                    height: auto;
+                    padding-bottom: 10vh;
+                    filter: ${showMenu ? 'blur(4px)' : 'none'};
+                  `}
+                >
+                  <PostList />
+                </div>
+              </Route>
 
-            <Route path='/share'>
-              <div style={{ filter: showMenu ? 'blur(4px)' : 'none' }}>
-                <Input
-                  submitPost={submitPost}
-                  title={title}
-                  setTitle={setTitle}
-                  postMsg={postMsg}
-                  setPostMsg={setPostMsg}
-                  submitting={submitting}
-                  sentMsg={sentMsg}
-                />
-              </div>
-            </Route>
+              <Route path='/share'>
+                <div style={{ filter: showMenu ? 'blur(4px)' : 'none' }}>
+                  <Input />
+                </div>
+              </Route>
+            </PostsProvider>
 
             <Route path='/about'>
               <div style={{ filter: showMenu ? 'blur(4px)' : 'none' }}>
