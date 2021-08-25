@@ -1,3 +1,5 @@
 *.config.js
 *.config.ts
 package.json
+tsconfig.json
+*.md
