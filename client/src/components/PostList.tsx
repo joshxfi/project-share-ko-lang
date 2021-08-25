@@ -5,7 +5,7 @@ import { css, jsx } from '@emotion/react';
 import { motion } from 'framer-motion';
 import { Post } from '../components/Post';
 
-export const PostList: React.FC<PostListProps> = ({ posts, updateLikes }) => {
+export const PostList: React.FC = () => {
   return (
     <motion.main
       initial='hidden'

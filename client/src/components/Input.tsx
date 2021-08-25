@@ -5,16 +5,15 @@ import mq from '../styles/breakpoint';
 import { colors } from '../styles/colors';
 import { Spinner } from './Spinner';
 import { motion } from 'framer-motion';
+import { useProps } from '../context/PostsContext';
 
-export const Input: React.FC<InputProps> = (props) => {
+export const Input: React.FC = () => {
   const maxChar =
-    props.postMsg.length < 30
-      ? `-${30 - props.postMsg.length}`
-      : props.postMsg.length;
+    postMsg.length < 30 ? `-${30 - postMsg.length}` : postMsg.length;
 
   return (
     <form
-      onSubmit={(e) => props.submitPost(e)}
+      onSubmit={(e) => submitPost(e)}
       spellCheck='false'
       css={css`
         display: flex;
@@ -99,14 +98,14 @@ export const Input: React.FC<InputProps> = (props) => {
         maxLength={50}
         type='text'
         placeholder='title / username (optional)'
-        onChange={(e) => props.setTitle(e.target.value)}
-        value={props.title}
+        onChange={(e) => setTitle(e.target.value)}
+        value={title}
       />
       <textarea
         placeholder='share a thought!'
         maxLength={400}
-        onChange={(e) => props.setPostMsg(e.target.value)}
-        value={props.postMsg}
+        onChange={(e) => setPostMsg(e.target.value)}
+        value={postMsg}
       ></textarea>
       <div
         css={css`
@@ -119,7 +118,7 @@ export const Input: React.FC<InputProps> = (props) => {
       >
         <motion.p
           initial={{ opacity: 0 }}
-          animate={{ opacity: props.sentMsg ? 1 : 0 }}
+          animate={{ opacity: sentMsg ? 1 : 0 }}
           transition={{ duration: 1 }}
           css={css`
             padding-left: 1rem;
@@ -137,9 +136,7 @@ export const Input: React.FC<InputProps> = (props) => {
           <span
             style={{
               color:
-                props.postMsg.length < 30 || props.postMsg.length === 400
-                  ? '#cc0000'
-                  : '',
+                postMsg.length < 30 || postMsg.length === 400 ? '#cc0000' : '',
             }}
           >
             {maxChar}
@@ -148,11 +145,7 @@ export const Input: React.FC<InputProps> = (props) => {
         </p>
       </div>
 
-      {props.submitting ? (
-        <Spinner />
-      ) : (
-        <button type='submit'>share post</button>
-      )}
+      {submitting ? <Spinner /> : <button type='submit'>share post</button>}
     </form>
   );
 };

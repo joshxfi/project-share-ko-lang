@@ -4,9 +4,8 @@ import { css, jsx } from '@emotion/react';
 import { colors } from '../styles/colors';
 import { Link } from 'react-router-dom';
 import { BsArrowRight } from 'react-icons/bs';
-import { MenuProps } from '..';
 
-export const Menu: React.FC<MenuProps> = ({ showMenu, setShowMenu }) => {
+export const Menu: React.FC = () => {
   return (
     <div
       css={css`
