@@ -1,4 +1,4 @@
-export interface PostSchema {
+interface PostSchema {
   _id: string;
   username: string;
   userPost: string;
@@ -6,7 +6,7 @@ export interface PostSchema {
   date: Date | string;
 }
 
-export interface InputProps {
+interface InputProps {
   title: string;
   postMsg: string;
   setTitle: React.Dispatch<React.SetStateAction<string>>;
@@ -16,23 +16,21 @@ export interface InputProps {
   sentMsg: boolean;
 }
 
-export interface MenuProps {
+interface MenuProps {
   showMenu: boolean;
   setShowMenu: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export interface NavProps {
-  showMenu: boolean;
-  setShowMenu: React.Dispatch<React.SetStateAction<boolean>>;
+interface NavProps extends MenuProps {
   setOnShare: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export interface PostProps {
+interface PostProps {
   post: PostSchema;
   updateLikes: (id: string) => void;
 }
 
-export interface PostListProps {
+interface PostListProps {
   posts: PostSchema[];
   updateLikes: (id: string) => void;
 }

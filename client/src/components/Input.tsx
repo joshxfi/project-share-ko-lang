@@ -4,7 +4,6 @@ import { css, jsx } from '@emotion/react';
 import mq from '../styles/breakpoint';
 import { colors } from '../styles/colors';
 import { Spinner } from './Spinner';
-import { InputProps } from '..';
 import { motion } from 'framer-motion';
 
 export const Input: React.FC<InputProps> = (props) => {

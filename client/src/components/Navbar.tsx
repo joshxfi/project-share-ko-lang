@@ -7,7 +7,6 @@ import { motion } from 'framer-motion';
 import { RiSpyFill } from 'react-icons/ri';
 import { colors } from '../styles/colors';
 import { FaBars } from 'react-icons/fa';
-import { NavProps } from '..';
 
 export const Navbar: React.FC<NavProps> = ({
   showMenu,

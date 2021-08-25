@@ -4,7 +4,6 @@ import { css, jsx } from '@emotion/react';
 import { motion } from 'framer-motion';
 import { colors } from '../styles/colors';
 import { ImArrowUp } from 'react-icons/im';
-import { PostProps } from '../index';
 
 export const Post: React.FC<PostProps> = ({ post, updateLikes }) => {
   const container = {

@@ -4,7 +4,6 @@ import mq from '../styles/breakpoint';
 import { css, jsx } from '@emotion/react';
 import { motion } from 'framer-motion';
 import { Post } from '../components/Post';
-import { PostListProps } from '../index';
 
 export const PostList: React.FC<PostListProps> = ({ posts, updateLikes }) => {
   return (
