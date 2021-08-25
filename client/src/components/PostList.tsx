@@ -1,12 +1,27 @@
 /** @jsx jsx */
+/** @jsxFrag */
 import React from 'react';
 import mq from '../styles/breakpoint';
 import { css, jsx } from '@emotion/react';
 import { motion } from 'framer-motion';
 import { Post } from '../components/Post';
+import { useProps } from '../context/PostsContext';
+import { Spinner } from './Spinner';
 
 export const PostList: React.FC = () => {
+  const { posts, updateLikes, loading } = useProps();
+
   return (
+    <>
+      {loading && (
+        <div
+          css={css`
+            margin-top: 5em;
+          `}
+        >
+          <Spinner />
+        </div>
+      )}
     <motion.main
       initial='hidden'
       animate='visible'
@@ -29,5 +44,6 @@ export const PostList: React.FC = () => {
           <Post post={post} key={id} updateLikes={updateLikes} />
         ))}
     </motion.main>
+    </>
   );
 };
