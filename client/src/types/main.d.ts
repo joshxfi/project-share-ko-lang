@@ -12,6 +12,7 @@ interface Value {
   postMsg: string;
   submitting: boolean;
   sentMsg: boolean;
+  loading: boolean;
   setPosts: React.Dispatch<React.SetStateAction<PostSchema[]>>;
   setTitle: React.Dispatch<React.SetStateAction<string>>;
   setPostMsg: React.Dispatch<React.SetStateAction<string>>;

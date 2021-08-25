@@ -5,7 +5,7 @@ import { colors } from '../styles/colors';
 import { Link } from 'react-router-dom';
 import { BsArrowRight } from 'react-icons/bs';
 
-export const Menu: React.FC = () => {
+export const Menu: React.FC<MenuProps> = ({ showMenu, setShowMenu }) => {
   return (
     <div
       css={css`

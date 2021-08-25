@@ -8,6 +8,16 @@ import { motion } from 'framer-motion';
 import { useProps } from '../context/PostsContext';
 
 export const Input: React.FC = () => {
+  const {
+    postMsg,
+    submitPost,
+    title,
+    setTitle,
+    setPostMsg,
+    sentMsg,
+    submitting,
+  } = useProps();
+
   const maxChar =
     postMsg.length < 30 ? `-${30 - postMsg.length}` : postMsg.length;
 

@@ -6,7 +6,6 @@ export const useProps = () => {
   return useContext(PostsContext);
 };
 
-export const [loading, setLoading] = useState<boolean>(true);
 
 export const PostsProvider = ({ children }: { children: React.ReactNode }) => {
   const [posts, setPosts] = useState<PostSchema[]>([]);
@@ -14,6 +13,7 @@ export const PostsProvider = ({ children }: { children: React.ReactNode }) => {
   const [postMsg, setPostMsg] = useState<string>('');
   const [submitting, setSubmitting] = useState<boolean>(false);
   const [sentMsg, setSentMsg] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const getPosts = async () => {
     try {
@@ -84,6 +84,7 @@ export const PostsProvider = ({ children }: { children: React.ReactNode }) => {
     setSentMsg,
     updateLikes,
     submitPost,
+    loading,
   };
 
   return (

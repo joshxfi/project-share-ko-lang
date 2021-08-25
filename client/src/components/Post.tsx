@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { colors } from '../styles/colors';
 import { ImArrowUp } from 'react-icons/im';
 
-export const Post: React.FC = () => {
+export const Post: React.FC<PostProps> = ({ post, updateLikes }) => {
   const container = {
     hidden: { y: 500, opacity: 0 },
     visible: {

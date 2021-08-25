@@ -8,10 +8,9 @@ import { Navbar } from './components/Navbar';
 import { Input } from './components/Input';
 import { PostList } from './components/PostList';
 import { Menu } from './components/Menu';
-import { Spinner } from './components/Spinner';
 import { About } from './components/About';
 import { GlobalStyle } from './styles/GlobalStyle';
-import { loading, PostsProvider } from './context/PostsContext';
+import { PostsProvider } from './context/PostsContext';
 
 const App: React.FC = () => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
@@ -70,15 +69,6 @@ const App: React.FC = () => {
               <Link to='/' onClick={() => setOnShare(false)}>
                 go back to posts?
               </Link>
-            )}
-            {loading && (
-              <div
-                css={css`
-                  margin-top: 5em;
-                `}
-              >
-                <Spinner />
-              </div>
             )}
           </div>
 
