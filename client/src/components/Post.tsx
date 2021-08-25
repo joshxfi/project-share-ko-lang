@@ -2,7 +2,7 @@
 import React from 'react';
 import { css, jsx } from '@emotion/react';
 import { motion } from 'framer-motion';
-import { colors } from '../Styles';
+import { colors } from '../styles/colors';
 import { ImArrowUp } from 'react-icons/im';
 import { PostProps } from '../index';
 
@@ -19,8 +19,8 @@ export const Post: React.FC<PostProps> = ({ post, updateLikes }) => {
   return (
     <motion.div
       variants={container}
-      initial="hidden"
-      animate="visible"
+      initial='hidden'
+      animate='visible'
       css={css`
         display: grid;
         background: ${colors.bg1};
@@ -44,7 +44,7 @@ export const Post: React.FC<PostProps> = ({ post, updateLikes }) => {
       `}
     >
       <h3>{post.username}</h3>
-      <p className="post">{post.userPost}</p>
+      <p className='post'>{post.userPost}</p>
 
       <div
         css={css`

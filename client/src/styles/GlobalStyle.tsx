@@ -1,17 +1,17 @@
 /** @jsx jsx */
-import React from "react";
-import { colors } from "./colors";
-import { css, jsx, Global } from "@emotion/react";
+import React from 'react';
+import { colors } from './colors';
+import { css, jsx, Global } from '@emotion/react';
 
 export const GlobalStyle: React.FC = () => {
   return (
     <Global
       styles={css`
-        @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap");
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
 
         * {
           box-sizing: border-box;
-          font-family: "Noto Sans JP", sans-serif;
+          font-family: 'Noto Sans JP', sans-serif;
           -webkit-tap-highlight-color: transparent;
           margin: 0;
           padding: 0;

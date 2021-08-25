@@ -8,8 +8,8 @@ import { PostListProps } from '../index';
 export const PostList: React.FC<PostListProps> = ({ posts, updateLikes }) => {
   return (
     <motion.main
-      initial="hidden"
-      animate="visible"
+      initial='hidden'
+      animate='visible'
       css={css`
         margin-top: 5rem;
         display: grid;

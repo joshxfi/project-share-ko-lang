@@ -4,7 +4,7 @@ import { css, jsx } from '@emotion/react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { RiSpyFill } from 'react-icons/ri';
-import { colors } from '../Styles';
+import { colors } from '../styles/colors';
 import { FaBars } from 'react-icons/fa';
 import { NavProps } from '..';
 
@@ -103,25 +103,25 @@ export const Navbar: React.FC<NavProps> = ({
         }
       `}
     >
-      <Link className="logo" to="/" onClick={() => setOnShare(false)}>
+      <Link className='logo' to='/' onClick={() => setOnShare(false)}>
         P-SKL <RiSpyFill />
       </Link>
-      <ul className="ul">
+      <ul className='ul'>
         <li>
-          <Link to="/about">about</Link>
+          <Link to='/about'>about</Link>
         </li>
         <li>
-          <a href="https://joshxfi.pages.dev" rel="noreferrer" target="_blank">
+          <a href='https://joshxfi.pages.dev' rel='noreferrer' target='_blank'>
             portfolio
           </a>
         </li>
         <li>
-          <a href="https://github.com/joshxfi" rel="noreferrer" target="_blank">
+          <a href='https://github.com/joshxfi' rel='noreferrer' target='_blank'>
             github
           </a>
         </li>
       </ul>
-      <FaBars className="menu" onClick={() => setShowMenu(!showMenu)} />
+      <FaBars className='menu' onClick={() => setShowMenu(!showMenu)} />
     </motion.nav>
   );
 };

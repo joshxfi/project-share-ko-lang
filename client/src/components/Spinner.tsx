@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import React from 'react';
 import { css, jsx } from '@emotion/react';
-import { colors } from '../Styles';
+import { colors } from '../styles/colors';
 
 export const Spinner: React.FC = () => {
   return (
@@ -77,9 +77,9 @@ export const Spinner: React.FC = () => {
           }
         `}
       >
-        <div className="inner one"></div>
-        <div className="inner two"></div>
-        <div className="inner three"></div>
+        <div className='inner one'></div>
+        <div className='inner two'></div>
+        <div className='inner three'></div>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import React from 'react';
 import { css, jsx } from '@emotion/react';
-import { colors } from '../Styles';
+import { colors } from '../styles/colors';
 import { Link } from 'react-router-dom';
 import { BsArrowRight } from 'react-icons/bs';
 import { MenuProps } from '..';
@@ -44,15 +44,15 @@ export const Menu: React.FC<MenuProps> = ({ showMenu, setShowMenu }) => {
         `}
       >
         <li>
-          <Link to="/about">about</Link>
+          <Link to='/about'>about</Link>
         </li>
         <li>
-          <a href="https://joshxfi.pages.dev" rel="author" target="_blank">
+          <a href='https://joshxfi.pages.dev' rel='author' target='_blank'>
             portfolio
           </a>
         </li>
         <li>
-          <a href="https://github.com/joshxfi" rel="author" target="_blank">
+          <a href='https://github.com/joshxfi' rel='author' target='_blank'>
             github
           </a>
         </li>

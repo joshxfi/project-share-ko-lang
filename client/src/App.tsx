@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import React, { useState, useEffect } from 'react';
-import { css, jsx, Global } from '@emotion/react';
-import { colors } from './Styles';
+import { css, jsx } from '@emotion/react';
+import { colors } from './styles/colors';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import axios from 'axios';
 import { PostSchema } from '.';
@@ -12,6 +12,7 @@ import { PostList } from './components/PostList';
 import { Menu } from './components/Menu';
 import { Spinner } from './components/Spinner';
 import { About } from './components/About';
+import { GlobalStyle } from './styles/GlobalStyle';
 
 const App: React.FC = () => {
   const [posts, setPosts] = useState<PostSchema[]>([]);
@@ -119,17 +120,17 @@ const App: React.FC = () => {
           `}
         >
           <div style={{ filter: showMenu ? 'blur(4px)' : 'none' }}>
-            <Link to="/share">
+            <Link to='/share'>
               <h1 onClick={() => setOnShare(true)}>
                 Share Anything <FaShare />
               </h1>
             </Link>
             {!onShare ? (
-              <Link to="/share" onClick={() => setOnShare(true)}>
+              <Link to='/share' onClick={() => setOnShare(true)}>
                 want to share someting?
               </Link>
             ) : (
-              <Link to="/" onClick={() => setOnShare(false)}>
+              <Link to='/' onClick={() => setOnShare(false)}>
                 go back to posts?
               </Link>
             )}
@@ -145,7 +146,7 @@ const App: React.FC = () => {
           </div>
 
           <Switch>
-            <Route exact path="/">
+            <Route exact path='/'>
               <div
                 css={css`
                   height: auto;
@@ -157,7 +158,7 @@ const App: React.FC = () => {
               </div>
             </Route>
 
-            <Route path="/share">
+            <Route path='/share'>
               <div style={{ filter: showMenu ? 'blur(4px)' : 'none' }}>
                 <Input
                   submitPost={submitPost}
@@ -171,66 +172,15 @@ const App: React.FC = () => {
               </div>
             </Route>
 
-            <Route path="/about">
+            <Route path='/about'>
               <div style={{ filter: showMenu ? 'blur(4px)' : 'none' }}>
                 <About />
               </div>
             </Route>
           </Switch>
         </div>
-
-        <Global
-          styles={css`
-            @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
-
-            * {
-              box-sizing: border-box;
-              font-family: 'Noto Sans JP', sans-serif;
-              -webkit-tap-highlight-color: transparent;
-              margin: 0;
-              padding: 0;
-            }
-
-            a {
-              text-decoration: none;
-              -webkit-tap-highlight-color: transparent;
-              color: ${colors.fg};
-            }
-
-            ul {
-              list-style: none;
-            }
-
-            body {
-              color: ${colors.fg};
-              background-color: ${colors.bg};
-              min-height: 100vh;
-              max-height: auto;
-              overflow-x: hidden;
-            }
-
-            ::selection {
-              background: ${colors.fg1};
-              color: ${colors.bg1};
-            }
-
-            ::-webkit-scrollbar {
-              width: 3px;
-              height: 10px;
-              background: ${colors.bg};
-            }
-
-            ::-webkit-scrollbar-track {
-              background: ${colors.bg};
-            }
-
-            ::-webkit-scrollbar-thumb {
-              background: ${colors.fg1};
-              border-radius: 8px;
-            }
-          `}
-        />
       </div>
+      <GlobalStyle />
     </Router>
   );
 };

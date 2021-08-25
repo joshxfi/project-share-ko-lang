@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import React from 'react';
 import { css, jsx } from '@emotion/react';
-import { colors } from '../Styles';
+import { colors } from '../styles/colors';
 
 export const About: React.FC = () => {
   return (

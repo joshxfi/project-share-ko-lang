@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import React from 'react';
 import { css, jsx } from '@emotion/react';
-import { colors } from '../Styles';
+import { colors } from '../styles/colors';
 import { Spinner } from './Spinner';
 import { InputProps } from '..';
 import { motion } from 'framer-motion';
@@ -15,7 +15,7 @@ export const Input: React.FC<InputProps> = (props) => {
   return (
     <form
       onSubmit={(e) => props.submitPost(e)}
-      spellCheck="false"
+      spellCheck='false'
       css={css`
         display: flex;
         flex-direction: column;
@@ -97,13 +97,13 @@ export const Input: React.FC<InputProps> = (props) => {
     >
       <input
         maxLength={50}
-        type="text"
-        placeholder="title / username (optional)"
+        type='text'
+        placeholder='title / username (optional)'
         onChange={(e) => props.setTitle(e.target.value)}
         value={props.title}
       />
       <textarea
-        placeholder="share a thought!"
+        placeholder='share a thought!'
         maxLength={400}
         onChange={(e) => props.setPostMsg(e.target.value)}
         value={props.postMsg}
@@ -151,7 +151,7 @@ export const Input: React.FC<InputProps> = (props) => {
       {props.submitting ? (
         <Spinner />
       ) : (
-        <button type="submit">share post</button>
+        <button type='submit'>share post</button>
       )}
     </form>
   );
