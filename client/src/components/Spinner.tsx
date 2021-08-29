@@ -8,7 +8,9 @@ export const Spinner: React.FC = () => {
     <div
       css={css`
         display: flex;
+        flex-direction: column;
         justify-content: center;
+        align-items: center;
       `}
     >
       <div
@@ -81,6 +83,14 @@ export const Spinner: React.FC = () => {
         <div className='inner two'></div>
         <div className='inner three'></div>
       </div>
+      <p
+        css={css`
+          margin-top: 2rem;
+          font-weight: 300;
+        `}
+      >
+        the server is currently down :(
+      </p>
     </div>
   );
 };
