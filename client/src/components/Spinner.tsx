@@ -83,14 +83,14 @@ export const Spinner: React.FC = () => {
         <div className='inner two'></div>
         <div className='inner three'></div>
       </div>
-      <p
+      {/* <p
         css={css`
           margin-top: 2rem;
           font-weight: 300;
         `}
       >
         the server is currently down :(
-      </p>
+      </p> */}
     </div>
   );
 };
