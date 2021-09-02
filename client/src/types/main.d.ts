@@ -1,3 +1,7 @@
+interface ImportMetaEnv {
+  MONGODB_URL: string;
+}
+
 interface PostSchema {
   _id: string;
   username: string;

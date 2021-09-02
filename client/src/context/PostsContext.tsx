@@ -6,7 +6,7 @@ export const useProps = () => {
   return useContext(PostsContext);
 };
 
-const URL = 'https://pskl-api.herokuapp.com/api/posts';
+const URL = import.meta.env.MONGODB_URL;
 
 export const PostsProvider = ({ children }: { children: React.ReactNode }) => {
   const [posts, setPosts] = useState<PostSchema[]>([]);
