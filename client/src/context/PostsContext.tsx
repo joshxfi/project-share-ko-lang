@@ -6,7 +6,7 @@ export const useProps = () => {
   return useContext(PostsContext);
 };
 
-const URL = import.meta.env.MONGODB_URL;
+const URL = import.meta.env.VITE_VERCEL_MONGODB_URL;
 
 export const PostsProvider = ({ children }: { children: React.ReactNode }) => {
   const [posts, setPosts] = useState<PostSchema[]>([]);

@@ -1,5 +1,5 @@
 interface ImportMetaEnv {
-  MONGODB_URL: string;
+  VITE_VERCEL_MONGODB_URL: string;
 }
 
 interface PostSchema {
