@@ -3,9 +3,7 @@ interface MenuProps {
   setShowMenu: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-interface NavProps extends MenuProps {
-  setOnShare: React.Dispatch<React.SetStateAction<boolean>>;
-}
+interface NavProps extends MenuProps {}
 
 interface PostProps {
   post: PostSchema;

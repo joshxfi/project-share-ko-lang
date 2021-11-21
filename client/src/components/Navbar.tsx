@@ -8,11 +8,7 @@ import { RiSpyFill } from 'react-icons/ri';
 import { colors } from '../styles/colors';
 import { FaBars } from 'react-icons/fa';
 
-export const Navbar: React.FC<NavProps> = ({
-  showMenu,
-  setShowMenu,
-  setOnShare,
-}) => {
+export const Navbar: React.FC<NavProps> = ({ showMenu, setShowMenu }) => {
   const [showNav, setShowNav] = useState<boolean>(true);
 
   let yBefore = window.pageYOffset;
@@ -103,7 +99,7 @@ export const Navbar: React.FC<NavProps> = ({
         }
       `}
     >
-      <Link className='logo' to='/' onClick={() => setOnShare(false)}>
+      <Link className='logo' to='/'>
         P-SKL <RiSpyFill />
       </Link>
       <ul className='ul'>
@@ -111,7 +107,7 @@ export const Navbar: React.FC<NavProps> = ({
           <Link to='/about'>about</Link>
         </li>
         <li>
-          <a href='https://joshxfi.pages.dev' rel='noreferrer' target='_blank'>
+          <a href='https://joshdaniel.tk' rel='noreferrer' target='_blank'>
             portfolio
           </a>
         </li>

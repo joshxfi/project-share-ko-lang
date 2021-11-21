@@ -2,19 +2,14 @@
 import React, { useState } from 'react';
 import { css, jsx } from '@emotion/react';
 import { colors } from './styles/colors';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { FaShare } from 'react-icons/fa';
 import { Navbar } from './components/Navbar';
-import { Input } from './components/Input';
-import { PostList } from './components/PostList';
 import { Menu } from './components/Menu';
-import { About } from './components/About';
 import { GlobalStyle } from './styles/GlobalStyle';
-import { PostsProvider } from './context/PostsContext';
 
 const App: React.FC = () => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
-  const [onShare, setOnShare] = useState<boolean>(false);
 
   return (
     <Router>
@@ -28,11 +23,7 @@ const App: React.FC = () => {
           text-align: center;
         `}
       >
-        <Navbar
-          showMenu={showMenu}
-          setShowMenu={setShowMenu}
-          setOnShare={setOnShare}
-        />
+        <Navbar showMenu={showMenu} setShowMenu={setShowMenu} />
         <Menu setShowMenu={setShowMenu} showMenu={showMenu} />
         <div
           onClick={() => setShowMenu(false)}
@@ -56,49 +47,15 @@ const App: React.FC = () => {
           `}
         >
           <div style={{ filter: showMenu ? 'blur(4px)' : 'none' }}>
-            <Link to='/share'>
-              <h1 onClick={() => setOnShare(true)}>
-                Share Anything <FaShare />
-              </h1>
-            </Link>
-            {!onShare ? (
-              <Link to='/share' onClick={() => setOnShare(true)}>
-                want to share someting?
-              </Link>
-            ) : (
-              <Link to='/' onClick={() => setOnShare(false)}>
-                go back to posts?
-              </Link>
-            )}
+            <h1
+              css={css`
+                color: lime;
+              `}
+            >
+              Thanks for Visiting!
+            </h1>
+            <p>this project is no longer maintained 😭</p>
           </div>
-
-          <Switch>
-            <PostsProvider>
-              <Route exact path='/'>
-                <div
-                  css={css`
-                    height: auto;
-                    padding-bottom: 10vh;
-                    filter: ${showMenu ? 'blur(4px)' : 'none'};
-                  `}
-                >
-                  <PostList />
-                </div>
-              </Route>
-
-              <Route path='/share'>
-                <div style={{ filter: showMenu ? 'blur(4px)' : 'none' }}>
-                  <Input />
-                </div>
-              </Route>
-
-              <Route path='/about'>
-                <div style={{ filter: showMenu ? 'blur(4px)' : 'none' }}>
-                  <About />
-                </div>
-              </Route>
-            </PostsProvider>
-          </Switch>
         </div>
       </div>
       <GlobalStyle />
